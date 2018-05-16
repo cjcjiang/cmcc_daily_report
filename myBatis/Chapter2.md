@@ -1,6 +1,7 @@
 # MyBatis Learning
 
-## 20180515
+## Chapter2
+### 20180515
 1. java中的byte[]对应数据库中的BLOB,LONGVARBINARY与二进制流有关的字段类型。
 2. Domain Object中不应使用基本类型。应使用Integer等。基本类型总会有默认值。但数据库里可能可以是null，就会有问题。
 3. 当所有的mapper都有对用的接口的情况下，可以直接扫描接口所在包，自动注册mapper.xml。
@@ -26,7 +27,11 @@
     - 当只有一个入参时，MyBatis不关心这个参数叫什么名字就会直接把这个唯一的参数值拿来用。
     - 多个参数为非Object类型。
     ![非obj](https://ws1.sinaimg.cn/large/e2989da6ly1frc4rlpb3bj20g202kq3g.jpg)
-    - 多个参数为Object类型。
+    - 多个参数为Object类型。在sql语句中需要点取值。如：#{user.id}，#{role.enabled}。
+    ![obj参数](https://ws1.sinaimg.cn/large/e2989da6ly1frcz6wwpjnj20du02l74p.jpg)
+
+### 20180516
+10. 需要学习反射来理解mybatis的接口动态代理的原理。
 
 
 
