@@ -29,6 +29,14 @@
 10. \转义。\tTAB。\\反斜杠。\r回车。
 11. raw_inpit()接收用户输入，返回string。input()函数会把输入的东西当做python代码进行处理，这么做会有安全问题，应该避开这个函数。
 
+## 20180521
+12. input("How old are you")里面的string是对输入者的提示。
+13. from ... import ...引入模块。将参数变量argv解包的方法。argv是个字符串数组。第0个一定是这个脚本的文件名。故解包时，就算运行时只有一个入参，也会解出2个。
+![argv解包](https://ws1.sinaimg.cn/large/e2989da6ly1fritalyavcj20ek02et8k.jpg)
+14. 没啥好记的。
+15. file=open(filename)打开文件，返回file object。file.read()读取file object里的内容。
+
+
 
 
 
