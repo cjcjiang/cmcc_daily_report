@@ -1,6 +1,7 @@
 # Python Learning
 
 ## 20180515
+0. python文档里的[, arg2]，表示这个传入参数是可选的。逗号是因为有这个参数时必须加逗号。
 1. python2的print直接上双引号。无分号。
 2. 注释是#。
 
@@ -35,6 +36,31 @@
 ![argv解包](https://ws1.sinaimg.cn/large/e2989da6ly1fritalyavcj20ek02et8k.jpg)
 14. 没啥好记的。
 15. file=open(filename)打开文件，返回file object。file.read()读取file object里的内容。
+
+## 20180522
+16. 读写文件
+    - 关于文件的命令。
+    ![文件命令](https://ws1.sinaimg.cn/large/e2989da6ly1frk5ede3yhj20hw04tdgp.jpg)
+    - open(filename, 'w')以写模式打开文件，会首先truncate()文件。
+17. 更多文件操作。
+    - exists(filename)文件存在返回true。from os.path import exists。
+    - len(string)返回string这个字符串的长度。
+    - open(filename).read()如果这样写不把file赋值给变量的话，call过read()之后，这个file会直接被关闭，就不能call文件的close()。
+18. 定义函数。def function_name(arg1, arg2):。*args更像接收了一个数组。**args更像接收了一个dict。
+19. python的参数传递既不是值传递也不是引用传递。而是passed by assignment。
+    1. the parameter passed in is actually a reference to an object (but the reference is passed by value)
+    2. some data types are mutable, but others aren't
+    3. If you pass a mutable object into a method, the method gets a reference to that same object and you can mutate it to your heart's delight, but if you rebind the reference in the method, the outer scope will know nothing about it, and after you're done, the outer reference will still point at the original object.
+    4. If you pass an immutable object to a method, you still can't rebind the outer reference, and you can't even mutate the object.
+20. fp.seek(offset, from_what)。
+    - where fp is the file pointer you're working with; offset means how many positions you will move; from_what defines your point of reference:
+    - 0: means your reference point is the beginning of the file
+    - 1: means your reference point is the current file position
+    - 2: means your reference point is the end of the file
+    - if omitted, from_what defaults to 0.
+21. return返回返回值。
+22. 无。
+
 
 
 
