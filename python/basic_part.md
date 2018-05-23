@@ -60,6 +60,24 @@
     - if omitted, from_what defaults to 0.
 21. return返回返回值。
 22. 无。
+23. 无。
+
+## 20180523
+24. 函数多返回值。
+    - python的函数是可以有多个返回值的。
+    ![多返回值](https://ws1.sinaimg.cn/large/e2989da6ly1frl1nzg797j20b3049glj.jpg)
+    - 多返回值函数可以直接应用于格式化字符串。
+    ![多返回值格式化字符串](https://ws1.sinaimg.cn/large/e2989da6ly1frl2hn6yfrj20i900oa9v.jpg)
+25. 零散知识点。
+    - 函数里使用"""注释"""，注释就是文档注释。命令行中help(module.function)就可以查看这个函数的文档注释。
+    ![文档注释](https://ws1.sinaimg.cn/large/e2989da6ly1frl24bsszwj20bc023glg.jpg)
+    - string分割在python中依然是split(' ')。
+    - 返回值可以返回函数。
+    - sorted(string_array)对字符串数组进行排序。
+    - string_array.pop(0)意思是取出字符串数组的第一个，并把其从数组中移除。-1是对最后一个操作。
+    - import ex25是直接引入模块，想使用模块里的函数需要ex25.function()。from ex25 import *就是直接引入全部函数，这样就可以直接用这个函数，而不用ex25这个模块名。
+26. 无。
+
 
 
 
