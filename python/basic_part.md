@@ -78,6 +78,24 @@
     - import ex25是直接引入模块，想使用模块里的函数需要ex25.function()。from ex25 import *就是直接引入全部函数，这样就可以直接用这个函数，而不用ex25这个模块名。
 26. 无。
 
+## 20180524
+27. 无。
+28. 布尔运算先后顺序。
+![布尔运算](https://ws1.sinaimg.cn/large/e2989da6ly1frm6p7mvdyj20rr0ixwfe.jpg)
+29. if后面如果不缩进，会报intended block错。
+30. 有if,elif和else。如果多个 elif 区块都是 True，Python 只会运行它碰到的是 True 的第一个区块，所以只有第一个为True的区块会被运行。
+31. 1<x<10,x in range(1, 10)。
+32. 循环和列表。
+    - 中括号包起来的是列表list。
+    ![列表](https://ws1.sinaimg.cn/large/e2989da6ly1frmoanmr42j207b01mdfn.jpg)
+    - 列表可以使用append('i')来增加元素。
+    - for number in the_count:是循环。the_count是列表。
+    - for i in range(0,6):。i是从0到5。
+33. while i<6:循环while的写法。
+34. 列表是0基。
+35. 在很多类型的操作系统里，``exit(0)`` 可以中断某个程序，而其中的数字参数则用来表示程序是否是碰到错误而中断。 exit(1) 表示发生了错误，而 exit(0) 则表示程序是正常退出的。这和我们学的布尔逻辑 0==False 正好相反，不过你可以用不一样的数字表示不同的错误结果。比如你可以用 exit(100) 来表示另一种和 exit(2)` 或 exit(1) 不同的错误。
+
+
 
 
 
