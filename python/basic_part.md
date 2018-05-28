@@ -1,4 +1,4 @@
-# Python Learning
+# Python Learning Notes
 
 ## 20180515
 0. python文档里的[, arg2]，表示这个传入参数是可选的。逗号是因为有这个参数时必须加逗号。
@@ -90,10 +90,30 @@
     ![列表](https://ws1.sinaimg.cn/large/e2989da6ly1frmoanmr42j207b01mdfn.jpg)
     - 列表可以使用append('i')来增加元素。
     - for number in the_count:是循环。the_count是列表。
-    - for i in range(0,6):。i是从0到5。
+    - for i in range(0,6):。i是从0到5。range(6)等价于range(0,6)。没有start的值的话，start默认就是0。
 33. while i<6:循环while的写法。
 34. 列表是0基。
 35. 在很多类型的操作系统里，``exit(0)`` 可以中断某个程序，而其中的数字参数则用来表示程序是否是碰到错误而中断。 exit(1) 表示发生了错误，而 exit(0) 则表示程序是正常退出的。这和我们学的布尔逻辑 0==False 正好相反，不过你可以用不一样的数字表示不同的错误结果。比如你可以用 exit(100) 来表示另一种和 exit(2)` 或 exit(1) 不同的错误。
+36. 无。
+37. 一些关键字。
+    - del。删除这个变量对内存中实际数值的引用。但是其它变量仍可引用这个内存中的数值。
+    ![del](https://ws1.sinaimg.cn/large/e2989da6ly1frnd6kbyczj20nv03taab.jpg)
+    - global。python与java的区别之一就是，python如果想在函数中使用全局变量，就需要使用global关键字。
+    ![global](https://ws1.sinaimg.cn/large/e2989da6ly1frndcfxfonj20o707zwew.jpg)
+    - with。用with打开的这种类似file的文件，在with代码块执行完成后，不管是否抛出异常，最后一定都会将file关闭。
+    ![with](https://ws1.sinaimg.cn/large/e2989da6ly1frndrqzcrgj20ac01jwec.jpg)
+    - yield。yield替代return在函数中的作用。yield返回的永远是一个生成器(generator)。生成器是一个object。生成器其实就是生成一个列表(可迭代的对象,iterable)，但是列表中的数据只能用一次。
+        1. 关于yield的详细网址。http://pyzh.readthedocs.io/en/latest/the-python-yield-keyword-explained.html
+        2. 列表生成器。是方括号。
+        ![列表生成](https://ws1.sinaimg.cn/large/e2989da6ly1frnespce8cj20b402o746.jpg)
+        3. 生成器。是圆括号。只在用时计算数值，节省内存。
+        ![生成器](https://ws1.sinaimg.cn/large/e2989da6ly1frnetroq2dj20cm02gq2v.jpg)
+        4. yield用法。yield不必要在代码块的结尾。因为yield不会中断这个代码块的执行。
+        ![yield](https://ws1.sinaimg.cn/large/e2989da6ly1frnevncv1ij208203ea9z.jpg)
+        ![yield在中间](https://ws1.sinaimg.cn/large/e2989da6ly1frneyi62edj208b055746.jpg)
+        5. 当使用yield返回生成器object时，可以直接用生成器object的next()函数输出值。
+        ![next输出值](https://ws1.sinaimg.cn/large/e2989da6ly1frnf0hy5qej20cy0aj74g.jpg)
+    - as。
 
 
 
