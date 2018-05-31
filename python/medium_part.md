@@ -26,4 +26,10 @@
     - str.replace(old, new[, max])。把字符串中的 old（旧字符串） 替换成 new(新字符串)，如果指定第三个参数max，则替换不超过 max 次。
     - list slicing。列表切片。就是list[1:4]，取出其中第1,2,3个的值。[:]就是全取出来，就是复制。
 
+## 20180529
+42. 对象及类。
+    - class name(object)。为了支持旧类，创建新类时需要加object。
+    - super(type[, object-or-type])这个用处就是用来调用父类方法。前边的type就是这个类自己。后边就是self。
+    ![spex](https://ws1.sinaimg.cn/large/e2989da6ly1frs1eea2n0j2083044q2s.jpg)
+
 
