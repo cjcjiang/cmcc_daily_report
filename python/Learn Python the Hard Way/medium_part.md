@@ -1,4 +1,4 @@
-# Python Learning Notes
+# Learn Pythoin the Hard Way Notes
 
 ## 20180525
 38. 列表的操作。
@@ -44,3 +44,34 @@
 45. 无。
 46. 无。
 47. dict.update(dict2)。把字典dict2的键/值对更新到dict里。
+
+## 20180612
+48. 更复杂的用户输入。
+    - 元组。用圆括号括起来。所有东西都跟list一样。只是创建之后就不能进行更改。
+    ![元组](https://ws1.sinaimg.cn/large/e2989da6ly1fs8ig6huicj20de00xjr6.jpg)
+    - 异常处理。
+    ![异常处理](https://ws1.sinaimg.cn/large/e2989da6ly1fs8ikc083nj208i04da9y.jpg)
+49. 创建句子。
+    - 自定义异常。
+    ![自定义](https://ws1.sinaimg.cn/large/e2989da6ly1fs8jjiunkmj20b201ndfn.jpg)
+    - 抛出异常。
+    ![抛出](https://ws1.sinaimg.cn/large/e2989da6ly1fs8jk2o0rvj20g100la9v.jpg)
+    - 使用assert_raises(exception,callable,parameters)于nose单元测试中测试是否正确抛出异常。
+53. 基本命令行。
+    - pwd。打印工作目录。即用户当前所在目录。
+    - cd ~。返回home路径。
+    - mkdir。创建目录。目录名带空格需要用双引号括起来。
+    - cd。更改目录。cd ..。返回上一层。cd ../../..。返回上3层。cd -返回前一个目录。
+    - ls。列出目录下的内容。ls -lr。列出的带权限大小日期啥的。
+    - rmdir john。john为目录名。
+    - pushd,popd,dirs。
+        1. pushd：切换到作为参数的目录，并把原目录和当前目录压入到一个虚拟的栈中。如果不指定参数，则会回到前一个目录，并把栈中最近的两个目录作交换。popd： 弹出栈中最近的目录。dirs: 列出当前栈中保存的目录列表。
+        2. 说明: dirs的 -p参数可以每行一个目录的形式显示栈中的目录列表。-v参数可以在目录前加上编号。注意:有 -v时，不添加 -p也可以每行一个目录的形式显示。
+        3. 说明之二:我们可以看到:最近压入栈的目录位于最上面。
+        4. 在多个目录之间切换。用 pushd +n即可。说明:n是一个数字,有此参数时，是切换到栈中的第n个目录,并把此目录以栈循环的方式推到栈的顶部。需要注意: 栈从第0个开始数起。
+    - touch。创建空文件。
+    - cp a.txt b.txt。把a复制成b。cp -r a b。复制文件夹。
+    - mv a b。将a移动成(重命名为)b。
+    - less a.txt。查看文件a的内容。会有分页。
+    - cat a.txt。查看文件a的内容。不会有分页。
+    - rm a.txt。删除文件。rm -rf newplace。强制删除newplace。rm is command to remove/delete stuff. -rf is two options joined together: -r for recursive removal ( typically used with directories) and -f to force the action。

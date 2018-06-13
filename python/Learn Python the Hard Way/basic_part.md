@@ -1,4 +1,4 @@
-# Python Learning Notes
+# Learn Pythoin the Hard Way Notes
 
 ## 20180515
 0. python文档里的[, arg2]，表示这个传入参数是可选的。逗号是因为有这个参数时必须加逗号。
