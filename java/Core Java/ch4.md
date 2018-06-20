@@ -1,4 +1,4 @@
-# Core Java Learning Notezs
+# Core Java Learning Notes
 
 ## Chapter 4
 
