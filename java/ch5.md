@@ -32,3 +32,6 @@
 ### 5.7 反射
 1. 根据类名创建相应的class对象，然后创建此对象的实例。
 ![使用反射](https://ws1.sinaimg.cn/large/e2989da6ly1fshpuys5yvj208y01i74c.jpg)
+2. 可以利用反射编写通用的toString()方法。详见p201。
+3. 可以利用反射扩展数组大小。实际上就是生成1个心得数组。
+![数组大小](https://ws1.sinaimg.cn/large/e2989da6ly1fsjssriocoj20ee069abi.jpg)
