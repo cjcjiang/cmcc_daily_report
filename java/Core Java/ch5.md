@@ -1,7 +1,5 @@
 # Core Java Learning Notes
 
->20180620
-
 ## Chapter 5
 
 ### 5.2 object所有类的超类
