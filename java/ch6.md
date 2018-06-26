@@ -33,3 +33,6 @@
 ![例子](https://ws1.sinaimg.cn/large/e2989da6ly1fsnp7uk0qrj20cw04u74x.jpg)
 11. 比较时不一定必须提供比较器。可以考虑用Comparator里提供的静态方法。
 ![comp静态方法](https://ws1.sinaimg.cn/large/e2989da6ly1fsnpm6219oj209e01xq35.jpg)
+
+### 6.4 内部类
+1. 内部类既可以访问自身的数据域，也可以访问创建它的外围类对象的数据域。
