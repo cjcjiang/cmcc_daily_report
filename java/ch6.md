@@ -47,3 +47,8 @@
 4. 双括号初始化。外层括号建立了ArrayList的一个匿名子类。内层括号则是一个对象构造块。
 ![双括号初始化](https://ws1.sinaimg.cn/large/e2989da6ly1fsvdhzg315j20dq00wdfw.jpg)
 5. 静态内部类。普通类无法使用static修饰，只有内部类可以。无需且无法引用外围类对象。
+
+### 6.4 代理
+1. 写法见书。实际的实现类对象是被存进了InvocationHandler。
+2. InvocationHandler中的invoke方法中的Method对象，推测是在newProxyInstance时插了些反射的东西，从而传进invoke方法的。
+3. Method对象包含了是哪个方法调用的invoke方法的信息，既是需要调用实际实现类的哪个方法的信息。
