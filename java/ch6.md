@@ -50,5 +50,5 @@
 
 ### 6.4 代理
 1. 写法见书。实际的实现类对象是被存进了InvocationHandler。
-2. InvocationHandler中的invoke方法中的Method对象，推测是在newProxyInstance时插了些反射的东西，从而传进invoke方法的。
+2. InvocationHandler中的invoke方法中的Method对象，推测是在newProxyInstance时插了些反射的东西，从而传进invoke方法的。newProxyInstance生成的类扩展于Proxy类。
 3. Method对象包含了是哪个方法调用的invoke方法的信息，既是需要调用实际实现类的哪个方法的信息。
