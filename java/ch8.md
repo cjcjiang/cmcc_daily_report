@@ -23,3 +23,27 @@
     ![桥方法](https://ws1.sinaimg.cn/large/e2989da6ly1ft3woh6w0aj20dv00odfw.jpg)
     - 桥方法有时可能出现只有返回类型不同的情况。在虚拟机中，用参数类型和返回类型确定一个方法。因此，编译器可以产生两个仅返回类型不同的方法字节码，虚拟机能够正确地处理这一情况。
     ![仅返回类型不同](https://ws1.sinaimg.cn/large/e2989da6ly1ft3wqtimamj20hm01h0t2.jpg)
+5. 使用泛型时的限制。
+    - 不能用类型参数代替基本类型。因此，没有Pair<double>, 只有Pair<Double>。当然，其原因是类型擦除。擦除之后，Pair类含有Object类型的域，而Object不能存储double值。
+    - 运行时进行类型查询，只会获得原始类型。为提醒这一风险，试图查询一个对象是否属于某个泛型类型时，倘若使用instanceof会得到一个编译器错误，如果使用强制类型转换会得到一个警告。同样的道理，getClass方法总是返回原始类型。
+    ![泛型类型查询](https://ws1.sinaimg.cn/large/e2989da6ly1ftds0044thj20f1021weu.jpg)
+    - 不能创建参数化类型数组。如果需要收集参数化类型对象，只有一种安全而有效的方法：使用ArrayList:ArrayList<Pair<String>>。
+    - 不能实例化类型变量。
+        1. 不能使用像new T(...)，new T[...]或T.class这样的表达式中的类型变量。下图中的构造器就是非法的。
+        ![非法构造器](https://ws1.sinaimg.cn/large/e2989da6ly1ftdslowteej20cy00z0sq.jpg)
+        2. 传统解决方法，通过反射调用Class.newInstance方法来构造泛型对象。
+            - makePair工厂方法。
+            ![工厂方法](https://ws1.sinaimg.cn/large/e2989da6ly1ftdsq2xxqsj20dp038jru.jpg)
+            - makePair工厂方法调用方式。
+            ![调用方式](https://ws1.sinaimg.cn/large/e2989da6ly1ftdsspcu4vj209q00saa0.jpg)
+        3. JAVA SE8，lambda表达式解决办法。
+            - makePair工厂方法。makePair方法接收一个Supplier<T>，这是一个函数式接口， 表示一个无参数而且返回类型为T的函数。
+            ![se8工厂方法](https://ws1.sinaimg.cn/large/e2989da6ly1ftdt7x0zfaj20bk02ldg4.jpg)
+            - makePair工厂方法调用方式。调用者提供一个构造器表达式。
+            ![se8调用方式](https://ws1.sinaimg.cn/large/e2989da6ly1ftdt9tcos8j209k00xdfs.jpg)
+    - 不能构造泛型数组。
+    - 禁止使用带有类型变量的静态域和方法。
+    - 既不能抛出也不能捕获泛型类对象。实际上，甚至泛型类扩展Throwable都是不合法的。
+    - 可以利用泛型消除对受查异常的检查。
+    - 类型擦除后引起的冲突。要想支持擦除的转换，就需要强行限制一个类或类型变量不能同时成为两个接口类型的子类，而这两个接口是同一接口的不同参数化。
+    ![非法](https://ws1.sinaimg.cn/large/e2989da6ly1ftduxr2974j20d2026mxh.jpg)
