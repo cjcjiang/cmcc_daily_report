@@ -47,3 +47,30 @@
     - 可以利用泛型消除对受查异常的检查。
     - 类型擦除后引起的冲突。要想支持擦除的转换，就需要强行限制一个类或类型变量不能同时成为两个接口类型的子类，而这两个接口是同一接口的不同参数化。
     ![非法](https://ws1.sinaimg.cn/large/e2989da6ly1ftduxr2974j20d2026mxh.jpg)
+6. 通配符类型。
+    - 泛型类，pair类之间没有继承关系。无论S与T有什么联系，通常，Pair<S>与Pair<T>没有什么联系。
+    ![泛型类无继承](https://ws1.sinaimg.cn/large/e2989da6ly1ftjum2ryfrj20kv0dvwkl.jpg)
+    - 完全没有继承关系意味着下面的方法调用无法实现，这很不方便。所以需要通配符来模拟继承关系。
+    ```java
+    public static void printBuddies(Pair<Employee> p) {}
+    Pair<Manager> managerBudies = new Pair<>(ceo, cfo);
+    printBuddies(managerBudies); //compile-time error
+    ```
+    - 使用通配符子类限定可以模拟继承关系。如下更改就可以实现上边方法的调用。
+    ```java
+    public static void printBuddies(Pair<? extends Employee> p) {}
+    Pair<Manager> managerBudies = new Pair<>(ceo, cfo);
+    printBuddies(managerBudies); //success
+    ```
+    ![通配符继承1](https://ws1.sinaimg.cn/large/e2989da6ly1ftjupaswagj20di01u74t.jpg)
+    ![通配符继承2](https://ws1.sinaimg.cn/large/e2989da6ly1ftjupmpuj0j20fw0cwn2u.jpg)
+    - 使用通配符子类限定时无法访问set方法，从而保护类内数据不被破坏。不能访问的原因是。不可能调用setFirst方法。编译器只知道需要某个Employee的子类型，但不知道具体是什么类型。因此它拒绝传递任何特定的类型。毕竟？不能用来匹配。使用getFirst就不存在这个问题，将getFirst的返回值赋给一个Employee的引用完全合法。
+    ![无法调用set](https://ws1.sinaimg.cn/large/e2989da6ly1ftjuvyh7ccj20dh01zjrx.jpg)
+    ![通配符子类限定的方法](https://ws1.sinaimg.cn/large/e2989da6ly1ftjux17eg0j207201fdfv.jpg)
+    - 使用通配符超类限定时访问get方法只能取回object。原因是。编译器无法知道setFirst方法的具体类型，因此调用这个方法时不能接受类型为Employee或Object的参数。只能传递Manager类型的对象，或者某个子类型（如Executive）对象，从而保护数据不被破坏。如果调用getFirst，不能保证返回对象的类型，只能把它赋给一个Object。
+    ![通配符超类限定](https://ws1.sinaimg.cn/large/e2989da6ly1ftjwjay15wj206j01h74a.jpg)
+    - 无限定通配符。只能调用get，不能调用set方法。
+    ![无限定通配符应用](https://ws1.sinaimg.cn/large/e2989da6ly1ftjwo5ntjtj20bt02mdg2.jpg)
+    - 可以使用如下方法捕获通配符的类型。通配符捕获只有在有许多限制的情况下才是合法的。编译器必须能够确信通配符表达的是单个、确定的类型。例如，ArrayList<Pair<T>>中的T永远不能捕获ArrayList<Pair<?>>中的通配符。数组列表可以保存两个Pair<?>，分别针对?的不同类型。
+    ![通配符捕获方法](https://ws1.sinaimg.cn/large/e2989da6ly1ftjww18414j209c03u0t0.jpg)
+    ![通配符方法](https://ws1.sinaimg.cn/large/e2989da6ly1ftjwwj6mr6j20b800sq2w.jpg)
