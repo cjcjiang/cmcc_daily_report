@@ -18,4 +18,23 @@
     ![3类原生端点](https://ws1.sinaimg.cn/large/e2989da6ly1fukudym65wj20sq05tq5z.jpg)
     - 如果加了spring security，某些端点可能需要"ACTUATOR"的role才能访问。
     - 应用配置类。
-        1. /autoconfig。
+        1. /autoconfig。获取应用的自动化配置报告。
+        2. /beans。获取应用上下文中创建的所有Bean。
+        3. /configprops。获取应用中配置的属性信息报告。
+        4. /env。获取应用所有可用的环境属性报告。
+        5. /mappings。返回所有Spring MVC的控制器映射关系报告。
+        6. /info。返回一些应用自定义的信息。
+    - 度量指标类。
+        1. /metrics。返回当前应用的各类重要度量指标，比如内存信息，线程信息，垃圾回收信息等。直接用这个接口一次获得全部指标，略显粗暴。故可使用/metrics/{name}接口来获取单一的度量信息。
+        2. /health。获取应用的各类健康指标信息。
+        ![自带健康检测器](https://ws1.sinaimg.cn/large/e2989da6ly1fuoc3zs144j20kv074acy.jpg)
+        3. 自定义健康检测器。
+            - 应用HealthIndicator接口，重写health()方法。
+            - 检测RocketMQ的示例。
+            ![RocketMQ健康监测](https://ws1.sinaimg.cn/large/e2989da6ly1fuocaivbvtj20mv0bhake.jpg)
+            - 接口返回的信息。
+            ![健康接口返回](https://ws1.sinaimg.cn/large/e2989da6ly1fuocbkykvrj2053026dg1.jpg)
+        4. /dump。暴露程序运行中的线程信息。
+        5. /trace。返回基本的HTTP跟踪信息。
+    - 操作控制类。
+        1. /shutdown。需加入配置endpoints.shutdown.enabled=true开启此控制。
