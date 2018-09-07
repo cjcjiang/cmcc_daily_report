@@ -103,3 +103,44 @@
     - Pointcut由ClassFilter和MethodMatcher构成。ClassFilter定位到某些特定类。MethodMatcher定位到某些特定方法。
     ![切点类关系图](https://ws1.sinaimg.cn/large/e2989da6ly1fusqnu82krj20fr07nadc.jpg)
     - 有静态和动态2种方法匹配器。静态仅匹配方法名签名。动态还需匹配参数的值。故动态需多次匹配，效率较差。
+    - 切点类型。
+    ![切点类型](https://ws1.sinaimg.cn/large/e2989da6ly1fuxktemnnrj20lt0jewo2.jpg)
+    - 切面类型。
+        1. Advisor。代表一般切面。
+        2. PointcutAdvisor。代表具有切点的切面。
+        3. IntroductionAdvisor。代表引介切面。
+        4. 切面类继承关系。
+        ![切面类继承关系](https://ws1.sinaimg.cn/large/e2989da6ly1fuxl2jd07kj20fo0aftbe.jpg)
+    - PointcutAdvisor的6个实现类。都是通过扩展对应的Pointcut实现类并实现PointcutAdvisor接口进行定义的。
+    ![切面实现类1](https://ws1.sinaimg.cn/large/e2989da6ly1fuxlk75r7sj20lz08sjuy.jpg)
+    ![切面实现类2](https://ws1.sinaimg.cn/large/e2989da6ly1fuxlkgisjwj20lr03u0ua.jpg)
+13. 利用StaticMethodMatcherPointcutAdvisor，实现静态普通方法名匹配切面。
+    - 示例。只匹配Waiter的greetTo方法。
+        1. 要被增强的类。
+        ![waiter类](https://ws1.sinaimg.cn/large/e2989da6ly1fuxmqgxxtqj20gf06qn0r.jpg)
+        ![seller类](https://ws1.sinaimg.cn/large/e2989da6ly1fuxmr10g4yj20gh051go0.jpg)
+        2. 切面类。定义要被增强的类和方法。扩展StaticMethodMatcherPointcutAdvisor类。必须重写matches方法，匹配特定方法。默认匹配所有类，重写getClassFilter方法，从而限定被增强的类。
+        ![切面类](https://ws1.sinaimg.cn/large/e2989da6ly1fuxmzozwq1j20m0094n4q.jpg)
+        3. 增强类。
+        ![增强类](https://ws1.sinaimg.cn/large/e2989da6ly1fuxn6821gbj20my07cgrg.jpg)
+        4. xml配置切面。
+        ![xml配置切面](https://ws1.sinaimg.cn/large/e2989da6ly1fuxnafwj6fj20m808rqa6.jpg)
+        5. 测试增强是否被织入。
+        ![织入测试](https://ws1.sinaimg.cn/large/e2989da6ly1fuxqh6s1ouj20k404kgoz.jpg)
+14. 利用RegexpMethodPointcutAdvisor，实现静态正则表达式方法匹配切面。
+    - 示例。RegexpMethodPointcutAdvisor类已是功能齐备的实现类，一般情况下无需扩展该类。
+        1. xml定义切面。patterns中的匹配模式串匹配的是目标类方法的全限定名。
+        ![xml定义切面](https://ws1.sinaimg.cn/large/e2989da6ly1fuyh0i0xbkj20lk097dn1.jpg)
+        2. 测试增强是否被织入。
+        ![正则织入测试](https://ws1.sinaimg.cn/large/e2989da6ly1fuyh6k373yj20k003cjto.jpg)
+    - 简单正则表达式语法，详见书。
+15. 动态切面。切面用DefaultPointcutAdvisor，切点用DynamicMethodMatcherPointcut定义。从而在运行时，动态检查方法的入参，决定是否织入增强。
+    - 示例。
+        1. 切点。扩展DynamicMethodMatcherPointcut类，重写方法设置切点。先进行静态切点检查，只有通过静态检查的才会进行动态检查，从而提高效率。
+        ![切点](https://ws1.sinaimg.cn/large/e2989da6ly1fuynxv5ae2j20mt0hd7je.jpg)
+        2. xml配置切面。
+        ![xml配置切面](https://ws1.sinaimg.cn/large/e2989da6ly1fuynzox3qxj20lh0a3wm4.jpg)
+        3. 测试增强是否被织入。
+        ![测试织入1](https://ws1.sinaimg.cn/large/e2989da6ly1fuyo5m3o9pj20ja058n0t.jpg)
+        ![测试织入2](https://ws1.sinaimg.cn/large/e2989da6ly1fuyo5v32q1j20f201owf0.jpg)
+        4. spring在创建代理织入切面时，对目标类中的所有方法进行静态切面检查。生成代理对象后，第一次调用代理类的每一个方法时都会进行一次静态切点检查，如果本次检查就能从候选者列表中将该方法排除，则以后对该方法的调用就不再执行静态切点检查；对于那些在静态切点检查时匹配的方法，在后续调用该方法时，将执行动态切点检查。
