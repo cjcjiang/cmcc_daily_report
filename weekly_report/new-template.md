@@ -1,4 +1,4 @@
-# cmcc_weekly_report
+# cmos_weekly_report
 
 ## 20180716
 【07月16日-07月20日周报】

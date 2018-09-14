@@ -1,4 +1,4 @@
-# cmcc_weekly_report
+# cmos_weekly_report
 
 ## 样板
 ### 20180414
