@@ -144,3 +144,31 @@
         ![测试织入1](https://ws1.sinaimg.cn/large/e2989da6ly1fuyo5m3o9pj20ja058n0t.jpg)
         ![测试织入2](https://ws1.sinaimg.cn/large/e2989da6ly1fuyo5v32q1j20f201owf0.jpg)
         4. spring在创建代理织入切面时，对目标类中的所有方法进行静态切面检查。生成代理对象后，第一次调用代理类的每一个方法时都会进行一次静态切点检查，如果本次检查就能从候选者列表中将该方法排除，则以后对该方法的调用就不再执行静态切点检查；对于那些在静态切点检查时匹配的方法，在后续调用该方法时，将执行动态切点检查。
+16. 流程切面。切面用DefaultPointcutAdvisor。切点用ControlFlowPointcut定义。只有由特定流程，如只有从某方法被调用时才织入增强，需使用流程切面。
+    - 示例。
+        1. 需织入逻辑的类是Waiter。发起调用Waiter的类是WaiterDelegate类的service方法。
+        ![WaiterDelegate发起调用](https://ws1.sinaimg.cn/large/e2989da6gy1fxup5qwt0mj20ox0a4jzt.jpg)
+        2. 切点。使用ControlFlowPointcut类，直接在构造函数中即可指定流程切点的触发类及触发方法。
+        ![切点](https://ws1.sinaimg.cn/large/e2989da6gy1fxuttsl9jfj20s805mgrj.jpg)
+        3. xml配置流程切面。
+        ![xml配置流程切面](https://ws1.sinaimg.cn/large/e2989da6gy1fxutw34muxj20s60fh4ei.jpg)
+        4. 增强织入测试。
+        ![织入测试1](https://ws1.sinaimg.cn/large/e2989da6gy1fxuu503u76j20p407hn3i.jpg)
+        ![织入测试2](https://ws1.sinaimg.cn/large/e2989da6gy1fxuu5e7cqbj20lj07bafw.jpg)
+17. 复合切点切面。使用ComposablePointcut类来组合2个切点。
+    - 组合方法。
+        1. ComposablePointcut类的构造函数。
+        ![构造函数](https://ws1.sinaimg.cn/large/e2989da6gy1fxvp520cetj20rg08iadx.jpg)
+        2. ComposablePointcut类提供的3个交集运算方法。
+        ![交集运算](https://ws1.sinaimg.cn/large/e2989da6gy1fxvp74ca8kj20rf078wi8.jpg)
+        3. ComposablePointcut类提供的2个并集运算方法。
+            - ![并集运算1](https://ws1.sinaimg.cn/large/e2989da6gy1fxvpbou34dj20rn02ijsd.jpg)
+            - ![并集运算2](https://ws1.sinaimg.cn/large/e2989da6gy1fxvpc9ad4aj20s202zt9w.jpg)
+        4. 可以直接使用Pointcuts工具类提供的静态方法进行2个切点的交或并集运算。
+        ![工具类静态](https://ws1.sinaimg.cn/large/e2989da6gy1fxvpkdonioj20rl04zgo3.jpg)
+    - 示例。
+        1. 流程切点，WaiterDelegate类的service方法调用Waiter类时织入。方法名匹配切点，调用Waiter类的greetTo方法是织入。
+        2. 使用ComposablePointcut类组合2个切点。
+        ![切点组合](https://ws1.sinaimg.cn/large/e2989da6gy1fxvpn1avbhj20t20e6dv2.jpg)
+        3. xml配置复合切面。
+        ![配置复合切面](https://ws1.sinaimg.cn/large/e2989da6gy1fxvpp5gvs9j20sn0ac7es.jpg)
