@@ -172,3 +172,29 @@
         ![切点组合](https://ws1.sinaimg.cn/large/e2989da6gy1fxvpn1avbhj20t20e6dv2.jpg)
         3. xml配置复合切面。
         ![配置复合切面](https://ws1.sinaimg.cn/large/e2989da6gy1fxvpp5gvs9j20sn0ac7es.jpg)
+18. 引介切面。
+    - 引介切面的2个实现类。DefaultIntroductionAdvisor和DeclareParentsAdvisor。后者用于实现使用AspectJ语言的DeclareParent注解表示的引介切面。
+    - DefaultIntroductionAdvisor的3个构造函数。
+    ![引介切面构造函数](https://ws1.sinaimg.cn/large/e2989da6gy1fy2l1df7wkj20rf09q43k.jpg)
+    - 配置引介切面。
+    ![配置引介切面](https://ws1.sinaimg.cn/large/e2989da6gy1fy2l4y5aojj20sp09bn6u.jpg)
+19. 自动创建代理。
+    - 三种基于BeanPostProcessor的自动代理创建器实现类。
+        1. BeanNameAutoProxyCreator。为一组特定配置名的Bean自动创建代理实例。
+        2. DefaultAdvisorAutoProxyCreator。对所有的Advisor进行扫描，自动将这些切面应用到匹配的Bean中。
+        3. AnnotationAwareAspectJAutoProxyCreator。为包含AspectJ注解的Bean自动创建代理实例。
+    - 自动代理创建器实现类的类继承图。
+    ![类继承图](https://ws1.sinaimg.cn/large/e2989da6gy1fyamo5j6isj20vx0iq7eo.jpg)
+20. BeanNameAutoProxyCreator的使用方法。
+    - 配置方法。
+    ![bean名自动1](https://ws1.sinaimg.cn/large/e2989da6gy1fyan8zgqljj213j05pn57.jpg)
+    ![bean名自动2](https://ws1.sinaimg.cn/large/e2989da6gy1fyan9fql6fj20yb04m7ac.jpg)
+    - optimize属性为true则强制使用cglib动态代理。
+    - 获取代理类方法。
+    ![bean名获取代理](https://ws1.sinaimg.cn/large/e2989da6gy1fyanerw0p9j20yk06kaip.jpg)
+21. DefaultAdvisorAutoProxyCreator的使用方法。
+    - 配置方法。
+    ![切面自动创建](https://ws1.sinaimg.cn/large/e2989da6gy1fyanlnlei4j210c0b4ncu.jpg)
+    - 获取代理类方法。
+    ![切面获取代理](https://ws1.sinaimg.cn/large/e2989da6gy1fyano0b22uj20yo07y12y.jpg)
+22. 被代理的类有内部方法调用时，被调用的方法无法应用被织入的增强。
